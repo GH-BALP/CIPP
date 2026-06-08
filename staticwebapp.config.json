@@ -1,4 +1,12 @@
 {
+  
+"networking": {
+    "allowedIpRanges": [    
+       "203.0.113.0/24",
+       "103.10.82.146/32"
+    ]
+  },
+
   "routes": [
     {
       "route": "_next/static/*",
@@ -88,3 +96,4 @@
     ".json": "text/json"
   }
 }
+
