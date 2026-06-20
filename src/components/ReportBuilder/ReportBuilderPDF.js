@@ -1,8 +1,29 @@
 import { useMemo } from 'react'
 import { Document, Page, Text, View, StyleSheet, PDFViewer, Image, Font } from '@react-pdf/renderer'
 
+/* ── Font Registration ─────────────────────────────────────
+ * Register Open Sans from Google Fonts CDN with all weights.
+ * ───────────────────────────────────────────────────────── */
+Font.register({
+  family: 'Open Sans',
+  fonts: [
+    {
+      src: 'https://fonts.gstatic.com/s/opensans/v40/memvYaGs126MiZpBA-UvWbX5ZZdhS6sFTMXOPlaf-i1jCMp.ttf',
+      fontWeight: 400,
+    },
+    {
+      src: 'https://fonts.gstatic.com/s/opensans/v40/memvYaGs126MiZpBA-UvWbX5ZZdhS6sFTLEe6QaU-i1jCMp.ttf',
+      fontWeight: 600,
+    },
+    {
+      src: 'https://fonts.gstatic.com/s/opensans/v40/memvYaGs126MiZpBA-UvWbX5ZZdhS6sFTMnOrUeOu1jCMp.ttf',
+      fontWeight: 700,
+    },
+  ],
+})
+
 /* ── Emoji support ─────────────────────────────────────────
- * Helvetica has no emoji glyphs.  react-pdf can render emojis
+ * Open Sans has no emoji glyphs. react-pdf can render emojis
  * as inline Twemoji images via Font.registerEmojiSource().
  * ───────────────────────────────────────────────────────── */
 Font.registerEmojiSource({
@@ -11,8 +32,13 @@ Font.registerEmojiSource({
 })
 
 /**
- * Styles matching the CIPP Executive Report design system exactly.
- * Brand color drives accent throughout.
+ * Brand color palette from design system:
+ * - Dark Blue:      #042B47  (headers, dark accents)
+ * - Mid Blue:       #044eba  (PRIMARY - logo & brand)
+ * - Bright Blue:    #002ab0  (interactive, emphasis)
+ * - Light Blue:     #75BEE9  (backgrounds, highlights)
+ *
+ * Styles matching the updated design system exactly.
  */
 const createStyles = (brandColor) =>
   StyleSheet.create({
@@ -20,7 +46,7 @@ const createStyles = (brandColor) =>
     coverPage: {
       flexDirection: 'column',
       backgroundColor: '#FFFFFF',
-      fontFamily: 'Helvetica',
+      fontFamily: 'Open Sans',
       padding: 60,
       justifyContent: 'space-between',
       minHeight: '100%',
@@ -52,8 +78,9 @@ const createStyles = (brandColor) =>
       alignSelf: 'flex-start',
     },
     mainTitle: {
+      fontFamily: 'Open Sans',
       fontWeight: 'bold',
-      color: '#1A202C',
+      color: '#042B47',
       lineHeight: 1.1,
       marginBottom: 20,
       letterSpacing: -1,
@@ -61,9 +88,10 @@ const createStyles = (brandColor) =>
     },
     titleAccent: { color: brandColor },
     subtitle: {
+      fontFamily: 'Open Sans',
       fontSize: 14,
-      color: '#000000',
-      fontWeight: 'normal',
+      color: '#2D3748',
+      fontWeight: 400,
       lineHeight: 1.5,
       marginBottom: 40,
       maxWidth: 400,
@@ -74,23 +102,28 @@ const createStyles = (brandColor) =>
       maxWidth: 400,
     },
     tenantName: {
+      fontFamily: 'Open Sans',
       fontSize: 18,
-      fontWeight: 'bold',
-      color: '#000000',
+      fontWeight: 600,
+      color: '#042B47',
       marginBottom: 8,
     },
     coverFooter: { textAlign: 'center', marginTop: 60 },
     confidential: {
+      fontFamily: 'Open Sans',
       fontSize: 9,
       color: '#A0AEC0',
       textTransform: 'uppercase',
       letterSpacing: 1,
+      fontWeight: 600,
     },
     dateStamp: {
+      fontFamily: 'Open Sans',
       fontSize: 9,
-      color: '#000000',
+      color: '#2D3748',
       textTransform: 'uppercase',
       letterSpacing: 0.5,
+      fontWeight: 600,
     },
     coverBackground: {
       position: 'absolute',
@@ -105,7 +138,7 @@ const createStyles = (brandColor) =>
     page: {
       flexDirection: 'column',
       backgroundColor: '#FFFFFF',
-      fontFamily: 'Helvetica',
+      fontFamily: 'Open Sans',
       fontSize: 10,
       lineHeight: 1.4,
       color: '#2D3748',
@@ -119,20 +152,26 @@ const createStyles = (brandColor) =>
       alignItems: 'flex-start',
     },
     pageHeaderDivider: {
-      height: 1,
+      height: 2,
       backgroundColor: brandColor,
       marginBottom: 24,
     },
     pageHeaderContent: { flex: 1 },
     pageTitle: {
+      fontFamily: 'Open Sans',
       fontSize: 20,
-      fontWeight: 'bold',
-      color: '#1A202C',
+      fontWeight: 700,
+      color: '#042B47',
       marginBottom: 8,
       paddingTop: 4,
       paddingBottom: 4,
     },
-    pageSubtitle: { fontSize: 11, color: '#4A5568', fontWeight: 'normal' },
+    pageSubtitle: { 
+      fontFamily: 'Open Sans',
+      fontSize: 11, 
+      color: '#4A5568', 
+      fontWeight: 400 
+    },
     headerLogo: { height: 30 },
 
     /* ── Sections ──────────────────────────────────────── */
@@ -140,8 +179,9 @@ const createStyles = (brandColor) =>
       marginBottom: 24,
     },
     sectionTitle: {
+      fontFamily: 'Open Sans',
       fontSize: 14,
-      fontWeight: 'bold',
+      fontWeight: 700,
       color: brandColor,
       marginBottom: 12,
       paddingTop: 4,
@@ -152,24 +192,28 @@ const createStyles = (brandColor) =>
       widows: 3,
     },
     statusText: {
+      fontFamily: 'Open Sans',
       fontSize: 9,
       fontStyle: 'italic',
+      fontWeight: 600,
     },
     statusPassed: { color: '#22543D' },
     statusFailed: { color: '#742A2A' },
     statusInvestigate: { color: '#744210' },
     statusSkipped: { color: '#718096' },
     bodyText: {
+      fontFamily: 'Open Sans',
       fontSize: 9,
       color: '#2D3748',
       lineHeight: 1.5,
       marginBottom: 12,
       textAlign: 'justify',
+      fontWeight: 400,
     },
 
     /* ── Tables ────────────────────────────────────────── */
     controlsTable: {
-      backgroundColor: '#FAFAFA',
+      backgroundColor: '#F7FAFC',
       marginBottom: 8,
     },
     tableHeader: {
@@ -179,8 +223,9 @@ const createStyles = (brandColor) =>
       paddingHorizontal: 12,
     },
     headerCell: {
+      fontFamily: 'Open Sans',
       fontSize: 7,
-      fontWeight: 'bold',
+      fontWeight: 700,
       color: '#FFFFFF',
       textTransform: 'uppercase',
       letterSpacing: 0.5,
@@ -198,35 +243,47 @@ const createStyles = (brandColor) =>
       paddingVertical: 8,
       paddingHorizontal: 12,
       alignItems: 'center',
-      backgroundColor: '#F7FAFC',
+      backgroundColor: '#F0F7FF',
     },
     tableCell: {
       flex: 1,
+      fontFamily: 'Open Sans',
       fontSize: 8,
       color: '#2D3748',
       lineHeight: 1.3,
+      fontWeight: 400,
     },
     tableCellBold: {
       flex: 1,
+      fontFamily: 'Open Sans',
       fontSize: 8,
-      fontWeight: 'bold',
-      color: '#2D3748',
+      fontWeight: 600,
+      color: '#042B47',
     },
 
     /* ── Info boxes ─────────────────────────────────────── */
     infoBox: {
-      backgroundColor: '#F7FAFC',
+      backgroundColor: '#F0F7FF',
       paddingVertical: 12,
       paddingHorizontal: 16,
       marginBottom: 12,
+      borderLeftColor: brandColor,
+      borderLeftWidth: 4,
     },
     infoTitle: {
+      fontFamily: 'Open Sans',
       fontSize: 9,
-      fontWeight: 'bold',
-      color: '#2D3748',
+      fontWeight: 700,
+      color: '#042B47',
       marginBottom: 6,
     },
-    infoText: { fontSize: 8, color: '#4A5568', lineHeight: 1.4 },
+    infoText: { 
+      fontFamily: 'Open Sans',
+      fontSize: 8, 
+      color: '#4A5568', 
+      lineHeight: 1.4,
+      fontWeight: 400,
+    },
 
     /* ── Lists ─────────────────────────────────────────── */
     listItem: {
@@ -235,41 +292,47 @@ const createStyles = (brandColor) =>
       marginBottom: 3,
     },
     listBullet: {
+      fontFamily: 'Open Sans',
       fontSize: 8,
       color: brandColor,
       marginRight: 6,
-      fontWeight: 'bold',
+      fontWeight: 700,
       marginTop: 1,
       width: 10,
     },
     listText: {
+      fontFamily: 'Open Sans',
       fontSize: 9,
       color: '#2D3748',
       lineHeight: 1.5,
       flex: 1,
+      fontWeight: 400,
     },
     orderedBullet: {
+      fontFamily: 'Open Sans',
       fontSize: 8,
       color: brandColor,
       marginRight: 6,
-      fontWeight: 'bold',
+      fontWeight: 700,
       marginTop: 1,
       width: 14,
     },
 
     /* ── Markdown headings ─────────────────────────────── */
     heading1: {
+      fontFamily: 'Open Sans',
       fontSize: 16,
-      fontWeight: 'bold',
-      color: '#1A202C',
+      fontWeight: 700,
+      color: '#042B47',
       marginTop: 10,
       marginBottom: 6,
       paddingTop: 4,
       paddingBottom: 2,
     },
     heading2: {
+      fontFamily: 'Open Sans',
       fontSize: 14,
-      fontWeight: 'bold',
+      fontWeight: 700,
       color: brandColor,
       marginTop: 8,
       marginBottom: 5,
@@ -277,8 +340,9 @@ const createStyles = (brandColor) =>
       paddingBottom: 2,
     },
     heading3: {
+      fontFamily: 'Open Sans',
       fontSize: 12,
-      fontWeight: 'bold',
+      fontWeight: 600,
       color: '#2D3748',
       marginTop: 6,
       marginBottom: 4,
@@ -294,6 +358,8 @@ const createStyles = (brandColor) =>
       fontSize: 8,
       fontFamily: 'Courier',
       color: '#2D3748',
+      borderLeftColor: '#002ab0',
+      borderLeftWidth: 3,
     },
     horizontalRule: {
       height: 1,
@@ -301,8 +367,18 @@ const createStyles = (brandColor) =>
       marginVertical: 8,
     },
 
-    footerText: { fontSize: 7, color: '#718096' },
-    pageNumber: { fontSize: 7, color: '#718096', fontWeight: 'bold' },
+    footerText: { 
+      fontFamily: 'Open Sans',
+      fontSize: 7, 
+      color: '#718096',
+      fontWeight: 400,
+    },
+    pageNumber: { 
+      fontFamily: 'Open Sans',
+      fontSize: 7, 
+      color: '#718096', 
+      fontWeight: 600 
+    },
   })
 
 /* ── Text helpers ────────────────────────────────────────── */
@@ -611,7 +687,8 @@ export const ReportBuilderDocument = ({
   brandingSettings,
   generatedDate,
 }) => {
-  const brandColor = brandingSettings?.colour || '#F77F00'
+  // Use mid-logo blue as primary brand color (#044eba)
+  const brandColor = brandingSettings?.colour || '#044eba'
   const logo = brandingSettings?.logo || null
   const s = createStyles(brandColor)
 
