@@ -1,29 +1,8 @@
 import { useMemo } from 'react'
 import { Document, Page, Text, View, StyleSheet, PDFViewer, Image, Font } from '@react-pdf/renderer'
 
-/* ── Font Registration ─────────────────────────────────────
- * Register Open Sans from Google Fonts CDN with all weights.
- * ───────────────────────────────────────────────────────── */
-Font.register({
-  family: 'Open Sans',
-  fonts: [
-    {
-      src: 'https://fonts.gstatic.com/s/opensans/v40/memvYaGs126MiZpBA-UvWbX5ZZdhS6sFTMXOPlaf-i1jCMp.ttf',
-      fontWeight: 400,
-    },
-    {
-      src: 'https://fonts.gstatic.com/s/opensans/v40/memvYaGs126MiZpBA-UvWbX5ZZdhS6sFTLEe6QaU-i1jCMp.ttf',
-      fontWeight: 600,
-    },
-    {
-      src: 'https://fonts.gstatic.com/s/opensans/v40/memvYaGs126MiZpBA-UvWbX5ZZdhS6sFTMnOrUeOu1jCMp.ttf',
-      fontWeight: 700,
-    },
-  ],
-})
-
 /* ── Emoji support ─────────────────────────────────────────
- * Open Sans has no emoji glyphs. react-pdf can render emojis
+ * Helvetica has no emoji glyphs. react-pdf can render emojis
  * as inline Twemoji images via Font.registerEmojiSource().
  * ───────────────────────────────────────────────────────── */
 Font.registerEmojiSource({
@@ -46,7 +25,7 @@ const createStyles = (brandColor) =>
     coverPage: {
       flexDirection: 'column',
       backgroundColor: '#FFFFFF',
-      fontFamily: 'Open Sans',
+      fontFamily: 'Helvetica',
       padding: 60,
       justifyContent: 'space-between',
       minHeight: '100%',
@@ -78,7 +57,6 @@ const createStyles = (brandColor) =>
       alignSelf: 'flex-start',
     },
     mainTitle: {
-      fontFamily: 'Open Sans',
       fontWeight: 'bold',
       color: '#042B47',
       lineHeight: 1.1,
@@ -88,10 +66,9 @@ const createStyles = (brandColor) =>
     },
     titleAccent: { color: brandColor },
     subtitle: {
-      fontFamily: 'Open Sans',
       fontSize: 14,
       color: '#2D3748',
-      fontWeight: 400,
+      fontWeight: 'normal',
       lineHeight: 1.5,
       marginBottom: 40,
       maxWidth: 400,
@@ -102,28 +79,25 @@ const createStyles = (brandColor) =>
       maxWidth: 400,
     },
     tenantName: {
-      fontFamily: 'Open Sans',
       fontSize: 18,
-      fontWeight: 600,
+      fontWeight: 'bold',
       color: '#042B47',
       marginBottom: 8,
     },
     coverFooter: { textAlign: 'center', marginTop: 60 },
     confidential: {
-      fontFamily: 'Open Sans',
       fontSize: 9,
       color: '#A0AEC0',
       textTransform: 'uppercase',
       letterSpacing: 1,
-      fontWeight: 600,
+      fontWeight: 'bold',
     },
     dateStamp: {
-      fontFamily: 'Open Sans',
       fontSize: 9,
       color: '#2D3748',
       textTransform: 'uppercase',
       letterSpacing: 0.5,
-      fontWeight: 600,
+      fontWeight: 'bold',
     },
     coverBackground: {
       position: 'absolute',
@@ -138,7 +112,7 @@ const createStyles = (brandColor) =>
     page: {
       flexDirection: 'column',
       backgroundColor: '#FFFFFF',
-      fontFamily: 'Open Sans',
+      fontFamily: 'Helvetica',
       fontSize: 10,
       lineHeight: 1.4,
       color: '#2D3748',
@@ -158,20 +132,14 @@ const createStyles = (brandColor) =>
     },
     pageHeaderContent: { flex: 1 },
     pageTitle: {
-      fontFamily: 'Open Sans',
       fontSize: 20,
-      fontWeight: 700,
+      fontWeight: 'bold',
       color: '#042B47',
       marginBottom: 8,
       paddingTop: 4,
       paddingBottom: 4,
     },
-    pageSubtitle: { 
-      fontFamily: 'Open Sans',
-      fontSize: 11, 
-      color: '#4A5568', 
-      fontWeight: 400 
-    },
+    pageSubtitle: { fontSize: 11, color: '#4A5568', fontWeight: 'normal' },
     headerLogo: { height: 30 },
 
     /* ── Sections ──────────────────────────────────────── */
@@ -179,9 +147,8 @@ const createStyles = (brandColor) =>
       marginBottom: 24,
     },
     sectionTitle: {
-      fontFamily: 'Open Sans',
       fontSize: 14,
-      fontWeight: 700,
+      fontWeight: 'bold',
       color: brandColor,
       marginBottom: 12,
       paddingTop: 4,
@@ -192,23 +159,21 @@ const createStyles = (brandColor) =>
       widows: 3,
     },
     statusText: {
-      fontFamily: 'Open Sans',
       fontSize: 9,
       fontStyle: 'italic',
-      fontWeight: 600,
+      fontWeight: 'bold',
     },
     statusPassed: { color: '#22543D' },
     statusFailed: { color: '#742A2A' },
     statusInvestigate: { color: '#744210' },
     statusSkipped: { color: '#718096' },
     bodyText: {
-      fontFamily: 'Open Sans',
       fontSize: 9,
       color: '#2D3748',
       lineHeight: 1.5,
       marginBottom: 12,
       textAlign: 'justify',
-      fontWeight: 400,
+      fontWeight: 'normal',
     },
 
     /* ── Tables ────────────────────────────────────────── */
@@ -223,9 +188,8 @@ const createStyles = (brandColor) =>
       paddingHorizontal: 12,
     },
     headerCell: {
-      fontFamily: 'Open Sans',
       fontSize: 7,
-      fontWeight: 700,
+      fontWeight: 'bold',
       color: '#FFFFFF',
       textTransform: 'uppercase',
       letterSpacing: 0.5,
@@ -247,17 +211,15 @@ const createStyles = (brandColor) =>
     },
     tableCell: {
       flex: 1,
-      fontFamily: 'Open Sans',
       fontSize: 8,
       color: '#2D3748',
       lineHeight: 1.3,
-      fontWeight: 400,
+      fontWeight: 'normal',
     },
     tableCellBold: {
       flex: 1,
-      fontFamily: 'Open Sans',
       fontSize: 8,
-      fontWeight: 600,
+      fontWeight: 'bold',
       color: '#042B47',
     },
 
@@ -271,19 +233,12 @@ const createStyles = (brandColor) =>
       borderLeftWidth: 4,
     },
     infoTitle: {
-      fontFamily: 'Open Sans',
       fontSize: 9,
-      fontWeight: 700,
+      fontWeight: 'bold',
       color: '#042B47',
       marginBottom: 6,
     },
-    infoText: { 
-      fontFamily: 'Open Sans',
-      fontSize: 8, 
-      color: '#4A5568', 
-      lineHeight: 1.4,
-      fontWeight: 400,
-    },
+    infoText: { fontSize: 8, color: '#4A5568', lineHeight: 1.4, fontWeight: 'normal' },
 
     /* ── Lists ─────────────────────────────────────────── */
     listItem: {
@@ -292,37 +247,33 @@ const createStyles = (brandColor) =>
       marginBottom: 3,
     },
     listBullet: {
-      fontFamily: 'Open Sans',
       fontSize: 8,
       color: brandColor,
       marginRight: 6,
-      fontWeight: 700,
+      fontWeight: 'bold',
       marginTop: 1,
       width: 10,
     },
     listText: {
-      fontFamily: 'Open Sans',
       fontSize: 9,
       color: '#2D3748',
       lineHeight: 1.5,
       flex: 1,
-      fontWeight: 400,
+      fontWeight: 'normal',
     },
     orderedBullet: {
-      fontFamily: 'Open Sans',
       fontSize: 8,
       color: brandColor,
       marginRight: 6,
-      fontWeight: 700,
+      fontWeight: 'bold',
       marginTop: 1,
       width: 14,
     },
 
     /* ── Markdown headings ─────────────────────────────── */
     heading1: {
-      fontFamily: 'Open Sans',
       fontSize: 16,
-      fontWeight: 700,
+      fontWeight: 'bold',
       color: '#042B47',
       marginTop: 10,
       marginBottom: 6,
@@ -330,9 +281,8 @@ const createStyles = (brandColor) =>
       paddingBottom: 2,
     },
     heading2: {
-      fontFamily: 'Open Sans',
       fontSize: 14,
-      fontWeight: 700,
+      fontWeight: 'bold',
       color: brandColor,
       marginTop: 8,
       marginBottom: 5,
@@ -340,9 +290,8 @@ const createStyles = (brandColor) =>
       paddingBottom: 2,
     },
     heading3: {
-      fontFamily: 'Open Sans',
       fontSize: 12,
-      fontWeight: 600,
+      fontWeight: 'bold',
       color: '#2D3748',
       marginTop: 6,
       marginBottom: 4,
@@ -367,18 +316,8 @@ const createStyles = (brandColor) =>
       marginVertical: 8,
     },
 
-    footerText: { 
-      fontFamily: 'Open Sans',
-      fontSize: 7, 
-      color: '#718096',
-      fontWeight: 400,
-    },
-    pageNumber: { 
-      fontFamily: 'Open Sans',
-      fontSize: 7, 
-      color: '#718096', 
-      fontWeight: 600 
-    },
+    footerText: { fontSize: 7, color: '#718096', fontWeight: 'normal' },
+    pageNumber: { fontSize: 7, color: '#718096', fontWeight: 'bold' },
   })
 
 /* ── Text helpers ────────────────────────────────────────── */
