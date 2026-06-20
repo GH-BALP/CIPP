@@ -60,6 +60,7 @@ const createStyles = (brandColor) =>
       paddingTop: 40,
     },
     coverLabel: {
+      fontFamily: 'Open Sans',
       backgroundColor: brandColor,
       color: '#FFFFFF',
       fontSize: 10,
@@ -72,6 +73,7 @@ const createStyles = (brandColor) =>
       alignSelf: 'flex-start',
     },
     mainTitle: {
+      fontFamily: 'Open Sans',
       fontWeight: 'bold',
       color: '#042B47',
       lineHeight: 1.1,
@@ -79,8 +81,9 @@ const createStyles = (brandColor) =>
       letterSpacing: -1,
       textTransform: 'uppercase',
     },
-    titleAccent: { color: brandColor },
+    titleAccent: { fontFamily: 'Open Sans', color: brandColor },
     subtitle: {
+      fontFamily: 'Open Sans',
       fontSize: 14,
       color: '#2D3748',
       fontWeight: 'normal',
@@ -94,6 +97,7 @@ const createStyles = (brandColor) =>
       maxWidth: 400,
     },
     tenantName: {
+      fontFamily: 'Open Sans',
       fontSize: 18,
       fontWeight: 'bold',
       color: '#042B47',
@@ -101,6 +105,7 @@ const createStyles = (brandColor) =>
     },
     coverFooter: { textAlign: 'center', marginTop: 60 },
     confidential: {
+      fontFamily: 'Open Sans',
       fontSize: 9,
       color: '#A0AEC0',
       textTransform: 'uppercase',
@@ -108,6 +113,7 @@ const createStyles = (brandColor) =>
       fontWeight: 'bold',
     },
     dateStamp: {
+      fontFamily: 'Open Sans',
       fontSize: 9,
       color: '#2D3748',
       textTransform: 'uppercase',
