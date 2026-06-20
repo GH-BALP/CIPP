@@ -52,7 +52,7 @@ const createStyles = (brandColor) =>
       marginBottom: 80,
     },
     logoSection: { flexDirection: 'row', alignItems: 'center' },
-    logo: { height: 100, marginRight: 12 },
+    logo: { height: 70, marginRight: 12 },
     coverHero: {
       flex: 1,
       justifyContent: 'flex-start',

@@ -73,7 +73,7 @@ const BECRemediationReportDocument = ({
     },
 
     logo: {
-      height: 100,
+      height: 70,
       marginRight: 12,
     },
 
