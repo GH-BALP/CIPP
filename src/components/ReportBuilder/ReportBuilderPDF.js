@@ -1,8 +1,23 @@
 import { useMemo } from 'react'
 import { Document, Page, Text, View, StyleSheet, PDFViewer, Image, Font } from '@react-pdf/renderer'
 
+/* ── Font Registration ─────────────────────────────────────
+ * Register Open Sans from local static assets.
+ * ───────────────────────────────────────────────────────── */
+Font.register({
+  family: 'Open Sans',
+  fonts: [
+    { src: '/fonts/open-sans/OpenSans-Regular.ttf', fontWeight: 'normal' },
+    { src: '/fonts/open-sans/OpenSans-Italic.ttf', fontStyle: 'italic', fontWeight: 'normal' },
+    { src: '/fonts/open-sans/OpenSans-SemiBold.ttf', fontWeight: 600 },
+    { src: '/fonts/open-sans/OpenSans-SemiBoldItalic.ttf', fontStyle: 'italic', fontWeight: 600 },
+    { src: '/fonts/open-sans/OpenSans-Bold.ttf', fontWeight: 'bold' },
+    { src: '/fonts/open-sans/OpenSans-BoldItalic.ttf', fontStyle: 'italic', fontWeight: 'bold' },
+  ],
+})
+
 /* ── Emoji support ─────────────────────────────────────────
- * Helvetica has no emoji glyphs. react-pdf can render emojis
+ * Open Sans has no emoji glyphs. react-pdf can render emojis
  * as inline Twemoji images via Font.registerEmojiSource().
  * ───────────────────────────────────────────────────────── */
 Font.registerEmojiSource({
@@ -25,7 +40,7 @@ const createStyles = (brandColor) =>
     coverPage: {
       flexDirection: 'column',
       backgroundColor: '#FFFFFF',
-      fontFamily: 'Helvetica',
+      fontFamily: 'Open Sans',
       padding: 60,
       justifyContent: 'space-between',
       minHeight: '100%',
@@ -112,7 +127,7 @@ const createStyles = (brandColor) =>
     page: {
       flexDirection: 'column',
       backgroundColor: '#FFFFFF',
-      fontFamily: 'Helvetica',
+      fontFamily: 'Open Sans',
       fontSize: 10,
       lineHeight: 1.4,
       color: '#2D3748',
