@@ -43,7 +43,7 @@ const BECRemediationReportDocument = ({
     page: {
       flexDirection: 'column',
       backgroundColor: '#FFFFFF',
-      fontFamily: 'Helvetica',
+      fontFamily: 'Open Sans',
       fontSize: 10,
       lineHeight: 1.4,
       color: '#2D3748',
@@ -54,7 +54,7 @@ const BECRemediationReportDocument = ({
     coverPage: {
       flexDirection: 'column',
       backgroundColor: '#FFFFFF',
-      fontFamily: 'Helvetica',
+      fontFamily: 'Open Sans',
       padding: 60,
       justifyContent: 'space-between',
       minHeight: '100%',

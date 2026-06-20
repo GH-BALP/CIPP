@@ -25,6 +25,7 @@ import {
   StyleSheet,
   PDFViewer,
   Image,
+  Font,
   Svg,
   Path,
   Circle,
@@ -34,6 +35,23 @@ import {
 import { useSettings } from '../hooks/use-settings'
 import { useSecureScore } from '../hooks/use-securescore'
 import { ApiGetCall } from '../api/ApiCall'
+
+/* ── Font Registration ─────────────────────────────────────
+ * Keep Executive Report typography aligned with Report Builder PDFs.
+ * ───────────────────────────────────────────────────────── */
+Font.register({
+  family: 'Open Sans',
+  fonts: [
+    { src: '/fonts/open-sans/OpenSans-Regular.ttf', fontWeight: 'normal' },
+    { src: '/fonts/open-sans/OpenSans-Italic.ttf', fontStyle: 'italic', fontWeight: 'normal' },
+    { src: '/fonts/open-sans/OpenSans-SemiBold.ttf', fontWeight: 600 },
+    { src: '/fonts/open-sans/OpenSans-SemiBoldItalic.ttf', fontStyle: 'italic', fontWeight: 600 },
+    { src: '/fonts/open-sans/OpenSans-Bold.ttf', fontWeight: 'bold' },
+    { src: '/fonts/open-sans/OpenSans-BoldItalic.ttf', fontStyle: 'italic', fontWeight: 'bold' },
+    { src: '/fonts/open-sans/OpenSans-ExtraBold.ttf', fontWeight: 900 },
+    { src: '/fonts/open-sans/OpenSans-ExtraBoldItalic.ttf', fontStyle: 'italic', fontWeight: 900 },
+  ],
+})
 
 // PRODUCTION-GRADE PDF SYSTEM WITH CONDITIONAL RENDERING
 const ExecutiveReportDocument = ({
@@ -63,7 +81,7 @@ const ExecutiveReportDocument = ({
     month: 'long',
     day: 'numeric',
   })
-  const brandColor = brandingSettings?.colour || '#F77F00'
+  const brandColor = brandingSettings?.colour || '#044eba'
 
   // ENTERPRISE DESIGN SYSTEM - JOBS/RAMS/IVE PRINCIPLES
   const styles = StyleSheet.create({
@@ -71,7 +89,7 @@ const ExecutiveReportDocument = ({
     page: {
       flexDirection: 'column',
       backgroundColor: '#FFFFFF',
-      fontFamily: 'Helvetica',
+      fontFamily: 'Open Sans',
       fontSize: 10,
       lineHeight: 1.4,
       color: '#2D3748',
@@ -82,7 +100,7 @@ const ExecutiveReportDocument = ({
     coverPage: {
       flexDirection: 'column',
       backgroundColor: '#FFFFFF',
-      fontFamily: 'Helvetica',
+      fontFamily: 'Open Sans',
       padding: 60,
       justifyContent: 'space-between',
       minHeight: '100%',
@@ -101,7 +119,7 @@ const ExecutiveReportDocument = ({
     },
 
     logo: {
-      height: 100,
+      height: 70,
       marginRight: 12,
     },
 
@@ -110,6 +128,7 @@ const ExecutiveReportDocument = ({
     },
 
     brandName: {
+      fontFamily: 'Open Sans',
       fontSize: 12,
       fontWeight: 'bold',
       color: brandColor,
@@ -118,10 +137,12 @@ const ExecutiveReportDocument = ({
     },
 
     dateStamp: {
+      fontFamily: 'Open Sans',
       fontSize: 9,
-      color: '#000000',
+      color: '#2D3748',
       textTransform: 'uppercase',
       letterSpacing: 0.5,
+      fontWeight: 'bold',
     },
 
     // MODERN HERO SECTION
@@ -133,6 +154,7 @@ const ExecutiveReportDocument = ({
     },
 
     coverLabel: {
+      fontFamily: 'Open Sans',
       backgroundColor: brandColor,
       color: '#FFFFFF',
       fontSize: 10,
@@ -141,15 +163,15 @@ const ExecutiveReportDocument = ({
       letterSpacing: 1,
       paddingHorizontal: 16,
       paddingVertical: 8,
-      borderRadius: 20,
       marginBottom: 30,
       alignSelf: 'flex-start',
     },
 
     mainTitle: {
+      fontFamily: 'Open Sans',
       fontSize: 48,
       fontWeight: 'bold',
-      color: '#1A202C',
+      color: '#042B47',
       lineHeight: 1.1,
       marginBottom: 20,
       letterSpacing: -1,
@@ -157,12 +179,14 @@ const ExecutiveReportDocument = ({
     },
 
     titleAccent: {
+      fontFamily: 'Open Sans',
       color: brandColor,
     },
 
     subtitle: {
+      fontFamily: 'Open Sans',
       fontSize: 14,
-      color: '#000000',
+      color: '#2D3748',
       fontWeight: 'normal',
       lineHeight: 1.5,
       marginBottom: 40,
@@ -176,14 +200,16 @@ const ExecutiveReportDocument = ({
     },
 
     tenantName: {
+      fontFamily: 'Open Sans',
       fontSize: 18,
       fontWeight: 'bold',
-      color: '#000000',
+      color: '#042B47',
       marginBottom: 8,
       textAlign: 'center',
     },
 
     tenantMeta: {
+      fontFamily: 'Open Sans',
       fontSize: 11,
       color: '#333333',
       textAlign: 'center',
@@ -195,10 +221,12 @@ const ExecutiveReportDocument = ({
     },
 
     confidential: {
+      fontFamily: 'Open Sans',
       fontSize: 9,
       color: '#A0AEC0',
       textTransform: 'uppercase',
       letterSpacing: 1,
+      fontWeight: 'bold',
     },
 
     // CONTENT PAGES - MODULAR COMPOSITION (FROST)
@@ -218,13 +246,15 @@ const ExecutiveReportDocument = ({
     },
 
     pageTitle: {
+      fontFamily: 'Open Sans',
       fontSize: 20,
       fontWeight: 'bold',
-      color: '#1A202C',
+      color: '#042B47',
       marginBottom: 8,
     },
 
     pageSubtitle: {
+      fontFamily: 'Open Sans',
       fontSize: 11,
       color: '#4A5568',
       fontWeight: 'normal',
@@ -238,6 +268,7 @@ const ExecutiveReportDocument = ({
     },
 
     sectionTitle: {
+      fontFamily: 'Open Sans',
       fontSize: 14,
       fontWeight: 'bold',
       color: brandColor,
@@ -249,11 +280,13 @@ const ExecutiveReportDocument = ({
     },
 
     bodyText: {
+      fontFamily: 'Open Sans',
       fontSize: 9,
       color: '#2D3748',
       lineHeight: 1.5,
       marginBottom: 12,
       textAlign: 'justify',
+      fontWeight: 'normal',
     },
 
     // STATS GRID - PERFECT ALIGNMENT (SPOOL)
@@ -573,7 +606,7 @@ const ExecutiveReportDocument = ({
     statPage: {
       flexDirection: 'column',
       backgroundColor: '#000000',
-      fontFamily: 'Helvetica',
+      fontFamily: 'Open Sans',
       padding: 0,
       justifyContent: 'center',
       alignItems: 'flex-start',
@@ -595,6 +628,7 @@ const ExecutiveReportDocument = ({
     },
 
     statMainText: {
+      fontFamily: 'Open Sans',
       fontSize: 18,
       color: '#FFFFFF',
       fontWeight: 'bold',
@@ -603,9 +637,10 @@ const ExecutiveReportDocument = ({
     },
 
     statHighlight: {
+      fontFamily: 'Open Sans',
       fontSize: 72,
       color: brandColor,
-      fontWeight: '900',
+      fontWeight: 900,
       lineHeight: 1,
       marginBottom: 8,
     },
@@ -620,6 +655,7 @@ const ExecutiveReportDocument = ({
     },
 
     statSubText: {
+      fontFamily: 'Open Sans',
       fontSize: 14,
       color: '#FFFFFF',
       fontWeight: 'bold',
@@ -628,6 +664,7 @@ const ExecutiveReportDocument = ({
     },
 
     statFooterText: {
+      fontFamily: 'Open Sans',
       position: 'absolute',
       bottom: 60,
       right: 60,
@@ -639,6 +676,7 @@ const ExecutiveReportDocument = ({
     },
 
     statBrandFooter: {
+      fontFamily: 'Open Sans',
       position: 'absolute',
       bottom: 60,
       left: 60,
@@ -2841,7 +2879,7 @@ export const ExecutiveReportButton = (props) => {
     if (!hasAllDataFinished) {
       return (
         <Document>
-          <Page size="A4" style={{ padding: 40, fontFamily: 'Helvetica' }}>
+          <Page size="A4" style={{ padding: 40, fontFamily: 'Open Sans' }}>
             <Text style={{ fontSize: 14, textAlign: 'center', marginTop: 100 }}>
               Loading report data...
             </Text>
@@ -2877,7 +2915,7 @@ export const ExecutiveReportButton = (props) => {
       console.error('Error creating ExecutiveReportDocument:', error)
       return (
         <Document>
-          <Page size="A4" style={{ padding: 40, fontFamily: 'Helvetica' }}>
+          <Page size="A4" style={{ padding: 40, fontFamily: 'Open Sans' }}>
             <Text style={{ fontSize: 14, color: 'red' }}>
               Error creating document: {error.message}
             </Text>
